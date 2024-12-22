@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Web - Your Digital Partner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+
+        .logo h2 {
+            font-family: 'Jaro', sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            align-items: center;
+            background-color: #000;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Default style for larger screens */
+        #digital-image {
+            width: auto;
+            /* Maintains aspect ratio */
+            height: 500px;
+        }
+
+        #digital-image {
+            width: 50%;
+            /* Adjust to fit the container proportionally */
+            max-width: 500px;
+            /* Limit the maximum size for large screens */
+            height: auto;
+            /* Maintain aspect ratio */
+            object-fit: contain;
+            /* Ensure the image adapts visually within dimensions */
+            margin: 0 auto;
+            /* Center the image if needed */
+            display: block;
+            /* Ensures proper layout */
+        }
+
+        /* For smaller screens */
+        @media (max-width: 768px) {
+            #digital-image {
+                width: 70%;
+                /* Take more width for smaller devices */
+                max-width: 300px;
+                /* Limit maximum size */
+            }
+        }
+
+
+        .content {
+            padding: 2rem;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .highlight {
+            color: #a020f0;
+            font-weight: bold;
+        }
+
+        .highlightb {
+            color: black;
+            font-size: 1.5 rem;
+            font-weight: bold;
+        }
+
+        .why-us {
+            background-color: #060606;
+            /* Dark background for cutout effect */
+            padding: 20px;
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: inset 0 0 15px rgb(0, 0, 0);
+            /* Inner shadow for the cutout effect */
+            position: relative;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .why-us h2 {
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* Why Us Stats for Mobile */
+        @media (max-width: 768px) {
+            .why-us .stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .stat {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem;
+                min-width: 150px;
+            }
+
+            .stat.purple {
+                background-color: #8000ff;
+            }
+
+            .stat.green {
+                background-color: #00c400;
+            }
+
+            .stat.orange {
+                background-color: #ff8c00;
+            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat {
+            background-color: black;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            flex: 1;
+            text-align: center;
+            position: relative;
+            /* box-shadow: inset 0 0 10px rgb(0, 0, 0); Inner shadow for embedded effect */
+        }
+
+        .stat .highlightb {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .stat.purple {
+            background-color: #8000ff;
+        }
+
+        .stat.blue {
+            background-color: #0E62FF;
+        }
+
+        .stat.green {
+            background-color: #00c400;
+        }
+
+        .stat.orange {
+            background-color: #ff8c00;
+        }
+
+        /* Add some hover effects for interaction */
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Lift effect */
+        }
+
+        .stat:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            /* Pressed effect */
+        }
+
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #7b1fa2, #a020f0);
+            /* Subtle gradient */
+            color: #ffffff;
+            /* Text color */
+            padding: 0.8rem 2rem;
+            /* Adjust padding for better balance */
+            font-size: 1rem;
+            /* Consistent text size */
+            font-weight: 600;
+            /* Slightly bold for emphasis */
+            border-radius: 25px;
+            /* Softer radius for rounded feel */
+            text-decoration: none;
+            /* No underline */
+            text-align: center;
+            /* Align text properly */
+            margin-top: 1.5rem;
+            /* Adjust top margin */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Smooth interaction */
+        }
+
+        /* Hover effect */
+        .cta-button:hover {
+            transform: translateY(-3px);
+            /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            /* Deeper shadow on hover */
+        }
+
+        /* Active effect */
+        .cta-button:active {
+            transform: translateY(1px);
+            /* Pressed effect */
+            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+            /* Inner shadow for press */
+        }
+
+        /* Add keyframes for bounce effect */
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-15px);
+            }
+
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+
+        /* Add keyframes for gradient animation */
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Add keyframes for fade-in and rise */
+        @keyframes fade-rise {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .services {
+            background-color: #060606;
+            /* Dark background for cutout effect */
+            padding: 20px;
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: inset 0 0 15px rgb(0, 0, 0);
+            /* Inner shadow for cutout effect */
+            position: relative;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+
+
+        .services-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .service {
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            color: #cacaca;
+            flex: 1;
+            text-align: center;
+            position: relative;
+            box-shadow: inset 0 0 10px rgb(0, 0, 0);
+            /* Inner shadow for embedded effect */
+        }
+
+        .services h3 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .service img {
+            width: 100px;
+            /* Fixed width */
+            height: 100px;
+            /* Fixed height */
+            object-fit: cover;
+            /* Ensures the image covers the container without distortion */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+
+        .service h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .service {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .service:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* Projects Section */
+        .projects {
+            background-color: #060606;
+            /* Dark background for cutout effect */
+            padding: 20px;
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: inset 0 0 15px rgb(0, 0, 0);
+            /* Inner shadow for cutout effect */
+            position: relative;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .projects h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-slider {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            max-width: 900px;
+        }
+
+        .slide {
+            display: none;
+            transition: transform 1s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .slider-nav .prev,
+        .slider-nav .next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .slider-nav .prev:hover,
+        .slider-nav .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Small slider for previous and next slides */
+        .small-slider {
+            width: 20%;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .small-slide {
+            width: 45%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .projects h2 {
+                font-size: 1.5rem;
+            }
+
+            .slider-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .slider-nav .prev,
+            .slider-nav .next {
+                margin-bottom: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1920px) {
+            .projects .project-slider .slide img {
+                width: 700px;
+                height: 400px;
+                object-fit: fill
+                    /* Ensures images are cropped to fit the dimensions */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects .project-slider .slide img {
+                width: 300px;
+                height: 300px;
+                object-fit: cover;
+                /* Ensures images are cropped to fit the dimensions */
+            }
+        }
+
+
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(135deg, #000000, #000000);
+            padding: 50px 20px;
+            color: #fff;
+            text-align: center;
+            background-color: #060606;
+            /* Dark background for cutout effect */
+            padding: 20px;
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: inset 0 0 15px rgb(0, 0, 0);
+            /* Inner shadow for cutout effect */
+            position: relative;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .testimonial-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-title p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.7;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #000000;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 0.8 rem;
+            margin-bottom: 20px;
+            color: #cacaca;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .author-img:hover {
+            transform: scale(1.1);
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .testimonial-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .testimonial-card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+
+
+        /* Journey Container */
+        .journey-container {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 20px;
+            background-color: #060606;
+            border-radius: 15px;
+            box-shadow: inset 0 0 15px rgb(0, 0, 0);
+            position: relative;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        /* Journey Stage */
+        .journey-stage {
+            text-align: center;
+            margin: 20px;
+            animation: fade-rise 1s ease-out;
+        }
+
+        /* Gradient Circle - Shared Styling */
+        .gradient-circle-odd,
+        .gradient-circle-even {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+            background-size: 200% 200%;
+            /* For gradient animation */
+            animation: gradient-shift 3s ease infinite, bounce 3s infinite;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Odd Circle */
+        .gradient-circle-odd {
+            background: linear-gradient(180deg, #701dff, #64ff04);
+        }
+
+        /* Even Circle */
+        .gradient-circle-even {
+            background: linear-gradient(180deg, #ff7f32, #701dff);
+        }
+
+
+        /* Hover Effect on Circle */
+        .gradient-circle-odd:hover,
+        .gradient-circle-even:hover {
+            transform: scale(1.1);
+            animation-play-state: paused;
+            /* Pause animation on hover */
+        }
+
+        /* Paragraph Styling */
+        .journey-stage p {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: white;
+            opacity: 0;
+            animation: fade-rise 1s ease-out forwards;
+            animation-delay: 0.3s;
+            /* Slight delay for text */
+        }
+
+        /* Staggered Animation for Each Stage */
+        .journey-stage:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .journey-stage:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .journey-stage:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .journey-stage:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        .journey-stage:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+
+        .journey-stage:nth-child(6) {
+            animation-delay: 1.5s;
+        }
+
+
+
+        /* Footer Section */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            /* Add some padding for smaller screens */
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            /* Allow wrapping for smaller screens */
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .social-icons img {
+            width: 25px;
+            height: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Media Queries for different screen sizes */
+
+        /* For tablets and below (max-width: 768px) */
+        @media (max-width: 768px) {
+            .footer-content p {
+                font-size: 0.9rem;
+                /* Slightly smaller font size */
+            }
+
+            .social-icons a {
+                font-size: 1.3rem;
+                /* Smaller icon size for better fit */
+            }
+
+            .social-icons {
+                gap: 0.8rem;
+                /* Adjust gap between icons */
+            }
+        }
+
+        /* For smaller devices like mobile phones (max-width: 480px) */
+        @media (max-width: 480px) {
+            footer {
+                padding: 1.5rem 0;
+                /* Less padding on mobile */
+            }
+
+            .footer-content p {
+                font-size: 0.8rem;
+                /* Even smaller font size */
+            }
+
+            .social-icons a {
+                font-size: 1.2rem;
+                /* Further reduce icon size */
+            }
+
+            .social-icons img {
+                width: 20px;
+                height: 20px;
+                /* Smaller icons on mobile */
+            }
+        }
+
+        /* For larger screens (max-width: 1200px) */
+        @media (max-width: 1200px) {
+            .footer-content p {
+                font-size: 0.95rem;
+                /* Slightly smaller font for medium screens */
+            }
+
+            .social-icons a {
+                font-size: 1.4rem;
+                /* Slightly smaller icon for medium screens */
+            }
+        }
+
+
+
+
+
+        /* Why Us Section */
+        .why-us {
+            background-color: #060606;
+            padding: 20px;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Mobile container */
+        .mobile-container {
+            position: relative;
+            width: 320px;
+            /* Reduced width */
+            height: 650px;
+            /* Elongated height */
+            margin: 20px auto;
+            background: #000000;
+            /* Inside area of mobile */
+            border: 5px solid #CACACA;
+            /* Light gray border */
+            border-radius: 40px;
+            /* Rounded corners */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            /* Deep shadow for realism */
+            overflow-y: auto;
+            padding-top: 40px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        /* Simulating a mobile phone notch */
+        .mobile-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Simulating a mobile phone home bar */
+        .mobile-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 6px;
+            background-color: #333;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Chat container inside mobile */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 20px;
+            margin-bottom: 80px;
+            /* Space for button */
+        }
+
+        /* Chat Messages with more "chat-like" feel */
+        .chat-message {
+            display: inline-block;
+            max-width: 80%;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            color: white;
+            border-radius: 15px;
+            position: relative;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: chat-appear 9s ease-in-out forwards;
+            font-weight: 500;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Left-aligned messages with vibrant styles */
+        .chat-message.left {
+            align-self: flex-start;
+            background: linear-gradient(135deg, #FF6F61, #FF9A8B);
+            border-radius: 15px 15px 0 15px;
+            /* Slightly rounded corners */
+        }
+
+        /* Right-aligned messages with vibrant styles */
+        .chat-message.right {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #4CA1AF, #C4E0E5);
+            border-radius: 15px 15px 15px 0;
+            /* Slightly rounded corners */
+        }
+
+        /* Animation for chat messages */
+        @keyframes chat-appear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            10%,
+            20% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Highlighted text */
+        .highlightb {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #000000;
+        }
+
+        /* Add subtle hover effect for chat bubbles */
+        .chat-message:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button with the new style */
+        .chat-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #7b1fa2, #a020f0);
+            /* Subtle gradient */
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            /* Adjust padding for better balance */
+            font-size: 1rem;
+            /* Consistent text size */
+            font-weight: 600;
+            /* Slightly bold for emphasis */
+            border-radius: 25px;
+            /* Softer radius for rounded feel */
+            text-decoration: none;
+            /* No underline */
+            text-align: center;
+            /* Align text properly */
+            margin-top: 1.5rem;
+            /* Adjust top margin */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Smooth interaction */
+        }
+
+        /* Button hover effect */
+        .chat-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .why-us h2 {
+                font-size: 1.5rem;
+            }
+
+            .chat-message {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .mobile-container {
+                width: 90%;
+                /* Mobile screen width */
+                border-radius: 25px;
+                /* Slightly smaller rounding */
+            }
+
+            .chat-button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-us h2 {
+                font-size: 1.2rem;
+            }
+
+            .chat-message {
+                max-width: 90%;
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            .mobile-container {
+                max-width: 100%;
+                /* Full width on small screens */
+            }
+
+            .chat-button {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+
+        /* Chat Messages with more "chat-like" feel */
+        .chat-message {
+            display: inline-block;
+            max-width: 80%;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            color: #0a0909;
+            border-radius: 15px;
+            position: relative;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transform: translateY(0);
+            animation: chat-bounce 0.6s ease-in-out forwards, chat-zoom 2s ease-in-out infinite;
+            /* Added zoom animation */
+            font-weight: 500;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        /* Small bounce animation for chat messages */
+        @keyframes chat-bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Zooming animation for rhythmic zoom-in and zoom-out */
+        @keyframes chat-zoom {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.05);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: #000;
+            border: 2px solid silver;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .form-container h2 {
+            margin: 0 0 20px;
+            text-align: center;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #151515;
+            border-radius: 5px;
+            background: #000000;
+            color: #fff;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #701DFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #701DFF;
+        }
+
+        /* Close Icon */
+        .close-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 15px;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-icon {
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .chat-box {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            background: #222;
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            animation: chat-slide-up 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .chat-box.fullscreen {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            animation: none;
+            /* Remove animation for full-screen mode */
+            box-shadow: none;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #701DFF, #9A4DFF);
+            padding: 15px;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-content {
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #333;
+        }
+
+        .chat-box.fullscreen .chat-content {
+            max-height: calc(100% - 150px);
+            /* Adjust for header and input */
+        }
+
+        .chat-messages {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 12px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .chat-messages.bot {
+            background: #444;
+            color: white;
+            align-self: flex-start;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-messages.user {
+            background: #701DFF;
+            color: white;
+            align-self: flex-end;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: #222;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-size: 14px;
+            background: #333;
+            color: white;
+            outline: none;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-input input::placeholder {
+            color: #999;
+        }
+
+        .chat-input button {
+            background: linear-gradient(135deg, #701DFF, #9A4DFF);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .chat-box {
+                width: 100%;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+                display: none;
+            }
+
+            .chat-icon {
+                display: none;
+            }
+        }
+
+        .footer-content {
+            background: #000000;
+            color: #ddd;
+            text-align: center;
+            padding: 20px 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            border-top: 2px solid #701DFF;
+        }
+
+        .footer-content p {
+            margin: 5px 0;
+        }
+
+        .footer-content span {
+            color: #701DFF;
+            font-weight: bold;
+        }
+
+        .footer-content a {
+            color: #9A4DFF;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .footer-content a:hover {
+            color: #701DFF;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h2>Go Web</h2>
+        </div>
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#" class="chat-button openForm">Book Your Dream Web Now</a>
+
+        </nav>
+    </header>
+
+
+    <div class="content">
+        <img src="main.png" alt="Digital Partner Image" height="500" id="digital-image">
+        <br>
+        <br>
+        <h1>Your <span class="highlight">All in One Digital</span> Partner</h1>
+        <p>From Apps to Web3, Design to Marketing &mdash; We <span class="highlight">Build</span>, <span
+                class="highlight">Launch</span>, and <span class="highlight">Scale</span> Your Vision.</p>
+    </div>
+
+    <div class="why-us">
+        <h2>WHY US?</h2>
+        <div class="mobile-container">
+            <div class="chat-container">
+                <div class="chat-message left">
+                    <span class="highlightb">1000</span> + Projects Delivered
+                </div>
+                <div class="chat-message right">
+                    <span class="highlightb">300</span> + Customers Served
+                </div>
+                <div class="chat-message left">
+                    In a <span class="highlightb">month</span> delivery
+                </div>
+                <div class="chat-message right">
+                    <span class="highlightb">800M $</span> in revenue
+                </div>
+            </div>
+            <!-- Button now acts as a link with new style -->
+            <a href="#" class="chat-button openForm">Book Your Dream Web Now</a>
+
+        </div>
+    </div>
+    <br>
+    <div class="services">
+        <div class="fluid"></div>
+        <h2>Our Services</h2>
+        <br>
+        <div class="services-grid">
+            <div class="service">
+                <img src="website.svg" alt="Web Apps">
+                <h3>Web Apps</h3>
+                <p>Build responsive, high-performance web apps to propel your business.</p>
+            </div>
+
+            <div class="service">
+                <img src="mobile.svg" alt="Mobile Apps">
+                <h3>Mobile Apps</h3>
+                <p>Design sleek, high-performance mobile apps for seamless experiences.</p>
+            </div>
+
+            <div class="service">
+                <img src="dapp.svg" alt="D Apps">
+                <h3>D Apps</h3>
+                <p>Build high-performance decentralized apps for seamless user experiences.</p>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service">
+                <img src="game.svg" alt="Game Design">
+                <h3>Game Design</h3>
+                <p>Craft immersive, interactive worlds with dynamic game design.</p>
+            </div>
+            <div class="service">
+                <img src="design.svg" alt="UI/UX Design">
+                <h3>UI/UX Design</h3>
+                <p>Design intuitive, engaging interfaces with seamless user experiences.</p>
+            </div>
+            <div class="service">
+                <img src="ad.svg" alt="Ad Design">
+                <h3>Ad Design</h3>
+                <p>Create striking, impactful advertisements that resonate with your audience.</p>
+            </div>
+        </div>
+
+
+        <div class="services-grid">
+            <div class="service">
+                <img src="ai.svg" alt="AI Analytics">
+                <h3>AI Analytics</h3>
+                <p>Leverage cutting-edge AI to analyze and optimize your business processes.</p>
+            </div>
+            <div class="service">
+                <img src="chat.svg" alt="Chat Bots">
+                <h3>Chat Bots</h3>
+                <p>Implement intelligent chatbots to enhance customer interactions and support.</p>
+            </div>
+            <div class="service">
+                <img src="seo.svg" alt="SEO Optimization">
+                <h3>SEO Optimization</h3>
+                <p>Boost your online presence and visibility with expert SEO strategies.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="projects" id="projects">
+        <h2>Our Projects</h2>
+        <br>
+        <div class="project-slider">
+            <div class="slide">
+                <a href="#"><img src="pro1.jpg" alt="Project 1"></a>
+            </div>
+            <div class="slide">
+                <a href="#"><img src="pro2.webp" alt="Project 2"></a>
+            </div>
+            <div class="slide">
+                <a href="#"><img src="pro3.webp" alt="Project 3"></a>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <button class="prev">←</button>
+            <button class="next">→</button>
+        </div>
+
+    </div>
+    <br>
+    <a href="#" class="chat-button openForm">Book Your Dream Web Now</a>
+
+    <br>
+    <br>
+    <br>
+
+
+    <section id="our-journey">
+        <h2>Your Journey With Us</h2>
+        <br>
+        <div class="journey-container">
+            <!-- Journey Stage 1 -->
+            <div class="journey-stage">
+                <div class="gradient-circle-odd">1</div>
+                <p>Requirement Gathering</p>
+            </div>
+            <!-- Journey Stage 2 -->
+            <div class="journey-stage">
+                <div class="gradient-circle-even">2</div>
+                <p>Market Research and Planning</p>
+            </div>
+            <!-- Journey Stage 3 -->
+            <div class="journey-stage">
+                <div class="gradient-circle-odd">3</div>
+                <p>Design and Prototype</p>
+            </div>
+        </div>
+        <div class="journey-container">
+
+            <!-- Journey Stage 4 -->
+            <div class="journey-stage">
+                <div class="gradient-circle-even">4</div>
+                <p>Development and Testing</p>
+            </div>
+            <!-- Journey Stage 5 -->
+            <div class="journey-stage">
+                <div class="gradient-circle-odd">5</div>
+                <p>Deployment and Support</p>
+            </div>
+            <!-- Journey Stage 6 -->
+            <div class="journey-stage">
+                <div class="gradient-circle-even">6</div>
+                <p>Marketing and Analysis</p>
+            </div>
+        </div>
+    </section>
+    <br>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonial-title">
+            <h2>What Our Clients Say</h2>
+            <p>See how our solutions have made a difference</p>
+            <br>
+        </div>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    <p>"Go Web has transformed the way we operate. Their work is second to none!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="man.svg" alt="Client 1" class="author-img">
+                    <div class="author-info">
+                        <h4>John Doe</h4>
+                        <p>CEO, TechCorp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    <p>"An amazing experience! The mobile app they built changed the way we engage with our customers."
+                    </p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="man.svg" alt="Client 2" class="author-img">
+                    <div class="author-info">
+                        <h4>Jane Smith</h4>
+                        <p>Marketing Director, WebCo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    <p>"Go Web's team delivered our project on time and exceeded expectations. Highly recommend!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="man.svg" alt="Client 3" class="author-img">
+                    <div class="author-info">
+                        <h4>Alex Johnson</h4>
+                        <p>Founder, InnovateX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-copyright">&copy; 2024 <span>Go Web</span>. All Rights Reserved.</p>
+            <p class="footer-developer">Developer: <span>NEELRAJ R</span></p>
+            <p class="footer-contact">Contact: <a
+                    href="mailto:neelrajreddy1694@gmail.com">neelrajreddy1694@gmail.com</a></p>
+        </div>
+
+    </footer>
+
+    <div class="chat-widget">
+        <div class="chat-icon" onclick="toggleChat()"><img src="chat.svg" height="50px"></div>
+        <div class="chat-box">
+            <div class="chat-header">AI Chatbot</div>
+            <div class="chat-content">
+                <div class="chat-messages bot">Hello! How can I assist you today?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Ask me anything..." id="user-input" />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="form-container">
+            <span class="close-icon" id="closeForm">&times;</span>
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Query" rows="4" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = 'none';
+            });
+            slides[index].style.display = 'block';
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initial call to show the first slide
+        showSlide(currentSlide);
+
+        // Attach event listeners to buttons
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Auto slideshow
+        setInterval(nextSlide, 3000); // Change slide every 3 seconds
+
+        let chatOpen = false;
+
+        function toggleChat() {
+            const chatBox = document.querySelector('.chat-box');
+            chatOpen = !chatOpen;
+            chatBox.style.display = chatOpen ? 'block' : 'none';
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput) {
+                const chatContent = document.querySelector('.chat-content');
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('chat-messages', 'user');
+                userMessage.textContent = userInput;
+                chatContent.appendChild(userMessage);
+                document.getElementById('user-input').value = '';
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('chat-messages', 'bot');
+                    botMessage.textContent = 'I will get back to you shortly.';
+                    chatContent.appendChild(botMessage);
+                    chatContent.scrollTop = chatContent.scrollHeight;  // Scroll to bottom
+                }, 1000);
+            }
+        }
+
+        document.querySelector('.chat-icon').addEventListener('click', () => {
+            const chatBox = document.querySelector('.chat-box');
+            chatBox.classList.toggle('fullscreen'); // Toggle fullscreen class
+            chatBox.style.display = chatBox.style.display === 'none' || chatBox.style.display === '' ? 'block' : 'none';
+        });
+
+
+
+
+
+        const openFormButtons = document.querySelectorAll('.openForm');
+        const overlay = document.getElementById('overlay');
+        const closeFormButton = document.getElementById('closeForm');
+
+        openFormButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                overlay.classList.add('active');
+            });
+        });
+
+        closeFormButton.addEventListener('click', () => {
+            overlay.classList.remove('active');
+        });
+
+        // Close overlay on outside click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
